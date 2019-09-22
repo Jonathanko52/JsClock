@@ -58,9 +58,35 @@
         background: black;
         position: absolute;
         top: 50%;
+        transform-origin: 100%;
       }
     </style>
 
-    <script></script>
+    <script>
+      let second = 0;
+      let minute = 0;
+      let hour = 0;
+      let secondHand = document.querySelector(".hour-hand");
+      let minuteHand = document.querySelector(".min-hand");
+      let hourHand = document.querySelector(".second-hand");
+
+      setInterval(() => {
+        console.log("Tick");
+        second++;
+        secondHand.style.transform = `rotate(${6 * second}deg)`;
+        minuteHand.style.transform = `rotate(${6 * minute}deg)`;
+        hourHand.style.transform = `rotate(${6 * hour}deg)`;
+
+        if (second >= 60) {
+          second = 0;
+          minute++;
+        } else if (minute >= 60) {
+          minute = 0;
+          hour += 5;
+        } else if (hour === 60) {
+          hour = 0;
+        }
+      }, 1000);
+    </script>
   </body>
 </html>
